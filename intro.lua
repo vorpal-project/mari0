@@ -20,7 +20,7 @@ function intro_update(dt)
 		end
 		
 		if introprogress > 0.5 and playedwilhelm == nil then
-			playsound(stabsound)
+			-- playsound(stabsound) -- @oldmusic
 			
 			playedwilhelm = true
 		end
@@ -66,7 +66,7 @@ function intro_mousepressed()
 	if not allowskip then
 		return
 	end
-	stabsound:stop()
+	-- stabsound:stop() -- @oldmusic
 	menu_load()
 end
 
@@ -74,6 +74,6 @@ function intro_keypressed()
 	if not allowskip then
 		return
 	end
-	stabsound:stop()
+	-- stabsound:stop() -- @oldmusic
 	menu_load()
 end

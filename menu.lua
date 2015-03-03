@@ -1,5 +1,5 @@
 function menu_load()
-	love.audio.stop()
+	-- love.audio.stop() -- @oldmusic
 	editormode = false
 	gamestate = "menu"
 	selection = 1
@@ -217,9 +217,9 @@ function menu_draw()
 			local t = map[x][y]
 			local tilenumber = tonumber(t[1])
 			if tilequads[tilenumber].coinblock and tilequads[tilenumber].invisible == false then --coinblock
-				love.graphics.drawq(coinblockimage, coinblockquads[spriteset][coinframe], math.floor((x-1)*16*scale), ((y-1)*16-8)*scale, 0, scale, scale)
+				love.graphics.draw(coinblockimage, coinblockquads[spriteset][coinframe], math.floor((x-1)*16*scale), ((y-1)*16-8)*scale, 0, scale, scale)
 			elseif tilenumber ~= 0 and tilequads[tilenumber].invisible == false then
-				love.graphics.drawq(tilequads[tilenumber].image, tilequads[tilenumber].quad, math.floor((x-1)*16*scale), ((y-1)*16-8)*scale, 0, scale, scale)
+				love.graphics.draw(tilequads[tilenumber].image, tilequads[tilenumber].quad, math.floor((x-1)*16*scale), ((y-1)*16-8)*scale, 0, scale, scale)
 			end
 		end
 	end
@@ -231,7 +231,7 @@ function menu_draw()
 	
 	properprint("*", uispace*1.5-8*scale, 16*scale)
 	
-	love.graphics.drawq(coinanimationimage, coinanimationquads[1][coinframe], uispace*1.5-16*scale, 16*scale, 0, scale, scale)
+	love.graphics.draw(coinanimationimage, coinanimationquads[1][coinframe], uispace*1.5-16*scale, 16*scale, 0, scale, scale)
 	properprint("00", uispace*1.5-0*scale, 16*scale)
 	
 	properprint("world", uispace*2.5 - 20*scale, 8*scale)
@@ -784,9 +784,9 @@ function menu_draw()
 			love.graphics.draw(portalglow, 142*scale, 57*scale, 0, scale, scale)
 			
 			love.graphics.setColor(unpack(portalcolor[skinningplayer][1]))
-			love.graphics.drawq(portalimage, portal1quad[portalframe], 174*scale, 46*scale, math.pi, scale, scale)
+			love.graphics.draw(portalimage, portal1quad[portalframe], 174*scale, 46*scale, math.pi, scale, scale)
 			love.graphics.setColor(unpack(portalcolor[skinningplayer][2]))
-			love.graphics.drawq(portalimage, portal1quad[portalframe], 142*scale, 70*scale, 0, scale, scale)
+			love.graphics.draw(portalimage, portal1quad[portalframe], 142*scale, 70*scale, 0, scale, scale)
 			
 			love.graphics.setScissor()
 			
@@ -1262,7 +1262,7 @@ end
 
 function loadmappacks()
 	mappacktype = "local"
-	mappacklist = love.filesystem.enumerate( "mappacks" )
+	mappacklist = love.filesystem.getDirectoryItems( "mappacks" )
 	
 	local delete = {}
 	for i = 1, #mappacklist do
@@ -1344,7 +1344,7 @@ end
 function loadonlinemappacks()
 	mappacktype = "online"
 	downloadmappacks()
-	onlinemappacklist = love.filesystem.enumerate( "mappacks" )
+	onlinemappacklist = love.filesystem.getDirectoryItems( "mappacks" )
 	
 	local delete = {}
 	for i = 1, #onlinemappacklist do
@@ -1532,7 +1532,7 @@ function downloadmappacks()
 		--Delete stuff and stuff.
 		if not success then
 			if love.filesystem.exists("mappacks/" .. maplist[i] .. "/") then
-				local list = love.filesystem.enumerate("mappacks/" .. maplist[i] .. "/")
+				local list = love.filesystem.getDirectoryItems("mappacks/" .. maplist[i] .. "/")
 				for j = 1, #list do
 					love.filesystem.remove("mappacks/" .. maplist[i] .. "/" .. list[j])
 				end
@@ -2158,7 +2158,7 @@ function delete_mappack(pack)
 		return false
 	end
 	
-	local list = love.filesystem.enumerate("mappacks/" .. pack .. "/")
+	local list = love.filesystem.getDirectoryItems("mappacks/" .. pack .. "/")
 	for i = 1, #list do
 		love.filesystem.remove("mappacks/" .. pack .. "/" .. list[i])
 	end

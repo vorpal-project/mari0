@@ -120,7 +120,7 @@ function shaders:init(numpasses)
 		return
 	end
 	
-	local files = love.filesystem.enumerate("shaders")
+	local files = love.filesystem.getDirectoryItems("shaders")
 	
 	for i,v in ipairs(files) do
 		local filename, filetype = v:match("(.+)%.(.-)$")
@@ -128,7 +128,7 @@ function shaders:init(numpasses)
 			local name = "shaders".."/"..v
 			if love.filesystem.isFile(name) then
 				local str = love.filesystem.read(name)
-				local success, effect = pcall(love.graphics.newPixelEffect, str)
+				local success, effect = pcall(love.graphics.newShader, str)
 				if success then
 					local defs = {}
 					for vtype, extern in str:gmatch("extern (%w+) (%w+)") do

@@ -156,11 +156,14 @@ function love.load()
     playertypei = 1
     playertype = playertypelist[playertypei] --portal, minecraft
     
-    if volume == 0 then
-        soundenabled = false
-    else
-        soundenabled = true
-    end
+    -- @oldmusic
+    soundenabled = false
+    -- if volume == 0 then
+    --     soundenabled = false
+    -- else
+    --     soundenabled = true
+    -- end
+    
     love.filesystem.createDirectory( "mappacks" )
     editormode = false
     yoffset = 0
