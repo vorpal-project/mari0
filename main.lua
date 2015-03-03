@@ -10,7 +10,7 @@
 function love.load()
 	marioversion = 1006
 	versionstring = "version 1.6"
-	shaderlist = love.filesystem.enumerate( "shaders/" )
+	shaderlist = love.filesystem.getDirectoryItems( "shaders/" )
 	dlclist = {"dlc_a_portal_tribute", "dlc_acid_trip", "dlc_escape_the_lab", "dlc_scienceandstuff", "dlc_smb2J", "dlc_the_untitled_game"}
 	
 	local rem
@@ -27,7 +27,7 @@ function love.load()
 	currentshaderi1 = 1
 	currentshaderi2 = 1
 	
-	hatcount = #love.filesystem.enumerate("graphics/SMB/hats")
+	hatcount = #love.filesystem.getDirectoryItems("graphics/SMB/hats")
 	
 	if not pcall(loadconfig) then
 		players = 1
@@ -39,15 +39,15 @@ function love.load()
 	fsaa = 0
 	fullscreen = false
 	changescale(scale, fullscreen)
-	love.graphics.setCaption( "Mari0" )
+	love.window.setTitle( "Mari0" )
 	
 	--version check by checking for a const that was added in 0.8.0
 	if love._version_major == nil then error("You have an outdated version of Love! Get 0.8.0 or higher and retry.") end
 	
-	iconimg = love.graphics.newImage("graphics/icon.gif")
-	love.graphics.setIcon(iconimg)
+	iconimg = love.image.newImageData("graphics/icon.gif")
+	love.window.setIcon(iconimg)
 	
-	love.graphics.setDefaultImageFilter("nearest", "nearest")
+	love.graphics.setDefaultFilter("nearest", "nearest")
 	
 	love.graphics.setBackgroundColor(0, 0, 0)
 	
@@ -1196,11 +1196,12 @@ function changescale(s, fullscreen)
 	if fullscreen then
 		fullscreen = true
 		scale = 2
-		love.graphics.setMode(800, 600, fullscreen, vsync, fsaa)
+		love.window.setMode(800, 600, { fullscreen = fullscreen, vsync = vsync, fsaa = fsaa })
 	end
 	
 	uispace = math.floor(width*16*scale/4)
-	love.graphics.setMode(width*16*scale, 224*scale, fullscreen, vsync, fsaa) --27x14 blocks (15 blocks actual height)
+	--27x14 blocks (15 blocks actual height)
+	love.window.setMode(width*16*scale, 224*scale, { fullscreen = fullscreen, vsync = vsync, fsaa = fsaa })
 	
 	gamewidth = love.graphics.getWidth()
 	gameheight = love.graphics.getHeight()
@@ -1522,7 +1523,7 @@ function properprint(s, x, y)
 			x = startx-((i)*8)*scale
 			y = y + 10*scale
 		elseif fontquads[char] then
-			love.graphics.drawq(fontimage, fontquads[char], x+((i-1)*8)*scale, y, 0, scale, scale)
+			love.graphics.draw(fontimage, fontquads[char], x+((i-1)*8)*scale, y, 0, scale, scale)
 		end
 	end
 end

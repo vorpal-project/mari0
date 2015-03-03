@@ -1,4 +1,4 @@
-local supported = love.graphics.isSupported and love.graphics.isSupported("canvas") and love.graphics.isSupported("pixeleffect")
+local supported = love.graphics.isSupported and love.graphics.isSupported("canvas") and love.graphics.isSupported("shader")
 local supports_npo2 = love.graphics.isSupported and love.graphics.isSupported("npot") or false -- on the safe side
 if not supported then 
 	shaderssupported = false
@@ -84,14 +84,14 @@ local function CreateShaderPass()
 				end
 			end
 			if effect.supported == nil then
-				effect.supported = pcall(love.graphics.setPixelEffect, effect[1])
+				effect.supported = pcall(love.graphics.setShader, effect[1])
 				if not effect.supported then
 					print(string.format("Error setting shader: %s!", self.cureffect))
 				end
 			elseif effect.supported then
-				love.graphics.setPixelEffect(effect[1])
+				love.graphics.setShader(effect[1])
 			else
-				love.graphics.setPixelEffect()
+				love.graphics.setShader()
 			end
 			love.graphics.drawq(self.canvas.canvas, self.canvas.quad, 0, 0)
 		end
@@ -250,5 +250,5 @@ function shaders:postdraw()
 	end
 
 	love.graphics.setBlendMode(blendmode)
-	love.graphics.setPixelEffect()
+	love.graphics.setShader()
 end
