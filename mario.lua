@@ -2623,7 +2623,7 @@ function mario:die(how)
 	self.animationmisc = nil
 	if everyonedead then
 		self.animationmisc = "everyonedead"
-		love.audio.stop()
+		-- love.audio.stop() -- @oldmusic
 	end
 	
 	playsound(deathsound)

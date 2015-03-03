@@ -218,9 +218,9 @@ function editor_draw()
 			if inmap(x, y+1) then
 				love.graphics.setColor(255, 255, 255, 200)
 				if editentities == false then
-					love.graphics.drawq(tilequads[currenttile].image, tilequads[currenttile].quad, math.floor((x-splitxscroll[1]-1)*16*scale), ((y-1)*16+8)*scale, 0, scale, scale)
+					love.graphics.draw(tilequads[currenttile].image, tilequads[currenttile].quad, math.floor((x-splitxscroll[1]-1)*16*scale), ((y-1)*16+8)*scale, 0, scale, scale)
 				else
-					love.graphics.drawq(entityquads[currenttile].image, entityquads[currenttile].quad, math.floor((x-splitxscroll[1]-1)*16*scale), ((y-1)*16+8)*scale, 0, scale, scale)
+					love.graphics.draw(entityquads[currenttile].image, entityquads[currenttile].quad, math.floor((x-splitxscroll[1]-1)*16*scale), ((y-1)*16+8)*scale, 0, scale, scale)
 				end
 			end
 		end
@@ -314,11 +314,11 @@ function editor_draw()
 			
 			if editentities == false then
 				for i = 1, tilelistcount+1 do
-					love.graphics.drawq(tilequads[i+tileliststart-1].image, tilequads[i+tileliststart-1].quad, math.mod((i-1), 22)*17*scale+5*scale, math.floor((i-1)/22)*17*scale+38*scale-tilesoffset, 0, scale, scale)
+					love.graphics.draw(tilequads[i+tileliststart-1].image, tilequads[i+tileliststart-1].quad, math.mod((i-1), 22)*17*scale+5*scale, math.floor((i-1)/22)*17*scale+38*scale-tilesoffset, 0, scale, scale)
 				end
 			else
 				for i = 1, entitiescount do
-					love.graphics.drawq(entityquads[i].image, entityquads[i].quad, math.mod((i-1), 22)*17*scale+5*scale, math.floor((i-1)/22)*17*scale+38*scale-tilesoffset, 0, scale, scale)
+					love.graphics.draw(entityquads[i].image, entityquads[i].quad, math.mod((i-1), 22)*17*scale+5*scale, math.floor((i-1)/22)*17*scale+38*scale-tilesoffset, 0, scale, scale)
 				end
 			end
 			

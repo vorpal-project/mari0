@@ -93,7 +93,7 @@ local function CreateShaderPass()
 			else
 				love.graphics.setShader()
 			end
-			love.graphics.drawq(self.canvas.canvas, self.canvas.quad, 0, 0)
+			love.graphics.draw(self.canvas.canvas, self.canvas.quad, 0, 0)
 		end
 	end
 	

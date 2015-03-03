@@ -1155,7 +1155,7 @@ function suspendgame()
     
     love.filesystem.write("suspend.txt", s)
     
-    love.audio.stop()
+    -- love.audio.stop() -- @oldmusic
     menu_load()
 end
 
@@ -1462,7 +1462,7 @@ end
 function love.focus(f)
     if not f and gamestate == "game"and not editormode and not levelfinished and not everyonedead  then
         pausemenuopen = true
-        love.audio.pause()
+        -- love.audio.pause() -- @oldmusic
     end
 end
 
