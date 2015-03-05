@@ -741,6 +741,7 @@ function love.load(...)
     -- musici = 2 -- @oldmusic
 
     pd = asf.address_new("localhost", "1337")
+    asf.send_msg(pd, "/game/load")
     
     shaders:init()
     shaders:set(1, shaderlist[currentshaderi1])
@@ -1326,6 +1327,10 @@ function love.joystickreleased(joystick, button)
     elseif gamestate == "game" then
         game_joystickreleased(joystick, button)
     end
+end
+
+function love.quit ()
+    asf.send_msg(pd, "/game/quit")
 end
 
 function round(num, idp) --Not by me
