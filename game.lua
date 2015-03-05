@@ -114,15 +114,16 @@ function game_load(suspended)
         spritebatchX[i] = 0
     end
     
-    custommusic = false
-    if love.filesystem.exists("mappacks/" .. mappack .. "/music.ogg") then
-        custommusic = "mappacks/" .. mappack .. "/music.ogg"
-        music:load(custommusic)
-    elseif love.filesystem.exists("mappacks/" .. mappack .. "/music.mp3") then
-        custommusic = "mappacks/" .. mappack .. "/music.mp3"
-        music:load(custommusic)
-    end
-    print(custommusic)
+    -- @oldmusic
+    --custommusic = false
+    --if love.filesystem.exists("mappacks/" .. mappack .. "/music.ogg") then
+    --    custommusic = "mappacks/" .. mappack .. "/music.ogg"
+    --    music:load(custommusic)
+    --elseif love.filesystem.exists("mappacks/" .. mappack .. "/music.mp3") then
+    --    custommusic = "mappacks/" .. mappack .. "/music.mp3"
+    --    music:load(custommusic)
+    --end
+    --print(custommusic)
     
     --FINALLY LOAD THE DAMN LEVEL
     levelscreen_load("initial")
@@ -2214,11 +2215,13 @@ function startlevel(level)
     end
     
     --PLAY BGM
-    if intermission == false then
-        playmusic()
-    else
-        playsound(intermissionsound)
-    end
+    asf.send_msg(pd, "/level/start")
+    -- @oldmusic
+    -- if intermission == false then
+    --     playmusic()
+    -- else
+    --     playsound(intermissionsound)
+    -- end
     
     --load editor
     editor_load()
@@ -2744,7 +2747,8 @@ function game_keypressed(key, unicode)
             return
         elseif not editormode and not everyonedead then
             pausemenuopen = true
-            love.audio.pause()
+            -- @oldmusic
+            --love.audio.pause()
             playsound(pausesound)
         end
     end
@@ -4043,7 +4047,7 @@ function inmap(x, y)
 end
 
 function playmusic()
-	-- @oldmusic
+    -- @oldmusic
     -- if musici == 7 and custommusic then
     --     music:play(custommusic)
     -- elseif musici ~= 1 then
@@ -4056,7 +4060,7 @@ function playmusic()
 end
 
 function stopmusic()
-	-- @oldmusic
+    -- @oldmusic
     -- if musici ~= 1 then
     --     if mariotime < 100 and mariotime > 0 then
     --         music:stopIndex(musici-1, true)
@@ -4098,7 +4102,8 @@ function getclosestplayer(x)
 end
 
 function endgame()
-    love.audio.stop()
+    -- @oldmusic
+    --love.audio.stop()
     playertype = "minecraft"
     playertypei = 2
     gamefinished = true

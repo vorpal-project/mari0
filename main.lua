@@ -140,6 +140,7 @@ function love.load()
     require "miniblock"
     require "notgate"
     --require "musicloader" -- @oldmusic
+    asf = require "asf"
     
     http = require("socket.http")
     http.TIMEOUT = 1
@@ -734,6 +735,8 @@ function love.load()
     -- musiclistfast = {overworldmusicfast, undergroundmusicfast, castlemusicfast, underwatermusicfast, starmusicfast}
     
     -- musici = 2 -- @oldmusic
+
+    pd = asf.address_new("localhost", "1337")
     
     shaders:init()
     shaders:set(1, shaderlist[currentshaderi1])
