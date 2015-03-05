@@ -7,7 +7,7 @@
     NOW GO AWAY (or stay and modify shit. I don't care as long as you stick to the above license.)
 ]]
 
-function love.load()
+function love.load(...)
     marioversion = 1006
     versionstring = "version 1.6"
     shaderlist = love.filesystem.getDirectoryItems( "shaders/" )
@@ -140,7 +140,11 @@ function love.load()
     require "miniblock"
     require "notgate"
     --require "musicloader" -- @oldmusic
-    asf = require "asf"
+    do
+        local path = (...)[2]
+        package.cpath = package.cpath .. ";" .. path .. "/lib/?.so"
+        asf = require "libasf"
+    end
     
     http = require("socket.http")
     http.TIMEOUT = 1
