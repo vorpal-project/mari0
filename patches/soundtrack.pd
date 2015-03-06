@@ -1,57 +1,74 @@
-#N canvas 836 255 677 598 10;
+#N canvas 428 206 1107 738 10;
 #X declare -lib mrpeach;
-#X obj 279 555 dac~;
-#X msg 293 185 \; pd dsp 1;
+#X msg 317 188 \; pd dsp 1;
 #X msg 354 148 \; pd dsp 0;
 #X obj 94 69 import mrpeach;
 #X obj 266 63 udpreceive 1337;
 #X obj 266 92 unpackOSC;
 #X obj 266 117 routeOSC /game/load /game/quit;
-#X obj 266 153 t b b;
 #X obj 206 113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 460 393 vsl 10 32 0 1 0 1 attack attack a 0 -8 0 8 -262144 -1
+#X obj 984 151 vsl 10 32 0 1 0 1 attack attack a 0 -8 0 8 -262144 -1
 -1 3100 0;
-#X obj 473 393 vsl 10 32 0 1 0 1 decay decay d 0 -8 0 8 -262144 -1
+#X obj 997 151 vsl 10 32 0 1 0 1 decay decay d 0 -8 0 8 -262144 -1
 -1 3100 0;
-#X obj 486 393 vsl 10 32 0 1 0 1 sustain sustain s 0 -8 0 8 -262144
+#X obj 1010 151 vsl 10 32 0 1 0 1 sustain sustain s 0 -8 0 8 -262144
 -1 -1 1550 0;
-#X obj 499 393 vsl 10 32 0 1 0 1 release release r 0 -8 0 8 -262144
+#X obj 1023 151 vsl 10 32 0 1 0 1 release release r 0 -8 0 8 -262144
 -1 -1 3100 0;
-#X msg 438 465 \; attack 100 \; decay 500 \; sustain 0.5 \; release
+#X msg 962 223 \; attack 100 \; decay 500 \; sustain 0.5 \; release
 500 \;;
-#X obj 381 383 loadbang;
-#X obj 394 347 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 905 141 loadbang;
+#X obj 918 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 279 514 *~;
-#X msg 361 441 0.5;
-#X obj 156 336 delay 200;
-#X obj 279 480 +~;
-#X obj 293 301 monophonic 1 osc~;
-#X msg 293 269 500 64;
-#X obj 266 242 t b b;
-#X obj 156 363 t b b;
-#X msg 183 393 500 67;
-#X obj 183 421 monophonic 2 osc~;
+#X obj 731 232 +~;
+#X obj 745 183 monophonic 1 osc~;
+#X obj 732 122 monophonic 2 osc~;
+#X obj 402 229 loadbang;
+#X obj 745 150 r \$0-mono-1;
+#X obj 732 88 r \$0-mono-2;
+#X msg 402 255 200;
+#X obj 300 290 phrase4 \$0-mono-1;
+#X obj 283 429 phrase4 \$0-mono-2;
+#X msg 543 210 100 78 100 78 0 0 100 78;
+#X msg 526 399 100 88 100 88 0 0 100 88;
+#X obj 266 153 t b b b b;
+#X obj 705 24 r \$0-mono-3;
+#X obj 705 58 monophonic 3 osc~;
+#X obj 706 265 +~;
+#X obj 705 348 dac~;
+#X obj 705 307 *~;
+#X obj 266 568 phrase4 \$0-mono-3;
+#X msg 509 538 100 62 100 62 0 0 100 62;
+#X msg 885 199 0.3;
+#X obj 731 453 demux 1 2 3 4;
+#X connect 3 0 4 0;
 #X connect 4 0 5 0;
-#X connect 5 0 6 0;
-#X connect 6 0 7 0;
-#X connect 6 1 2 0;
-#X connect 7 0 22 0;
-#X connect 7 1 1 0;
-#X connect 8 0 7 0;
-#X connect 14 0 13 0;
-#X connect 14 0 17 0;
-#X connect 15 0 14 0;
-#X connect 16 0 0 1;
-#X connect 16 0 0 0;
-#X connect 17 0 16 1;
-#X connect 18 0 23 0;
+#X connect 5 0 25 0;
+#X connect 5 1 1 0;
+#X connect 6 0 25 0;
+#X connect 12 0 11 0;
+#X connect 12 0 33 0;
+#X connect 13 0 12 0;
+#X connect 14 0 28 1;
+#X connect 15 0 14 1;
+#X connect 16 0 14 0;
+#X connect 17 0 20 0;
+#X connect 18 0 15 0;
 #X connect 19 0 16 0;
-#X connect 20 0 19 1;
-#X connect 21 0 20 0;
-#X connect 22 0 18 0;
-#X connect 22 1 21 0;
-#X connect 23 1 24 0;
-#X connect 24 0 25 0;
-#X connect 25 0 19 0;
+#X connect 20 0 21 1;
+#X connect 20 0 22 1;
+#X connect 20 0 31 1;
+#X connect 23 0 21 2;
+#X connect 24 0 22 2;
+#X connect 25 0 31 0;
+#X connect 25 1 22 0;
+#X connect 25 2 21 0;
+#X connect 25 3 0 0;
+#X connect 26 0 27 0;
+#X connect 27 0 28 0;
+#X connect 28 0 30 0;
+#X connect 30 0 29 1;
+#X connect 30 0 29 0;
+#X connect 32 0 31 2;
+#X connect 33 0 30 1;
