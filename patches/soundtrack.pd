@@ -1,4 +1,4 @@
-#N canvas 765 256 677 598 10;
+#N canvas 765 259 677 598 10;
 #X declare -lib mrpeach;
 #X obj 266 476 dac~;
 #X msg 293 185 \; pd dsp 1;
@@ -74,7 +74,7 @@
 #X obj 266 153 t b b;
 #X obj 206 113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 282 370 *~ 0.1;
+#X obj 282 370 *~ 0.5;
 #X connect 3 0 12 0;
 #X connect 5 0 6 0;
 #X connect 6 0 7 0;
