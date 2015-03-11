@@ -458,6 +458,9 @@ function game_update(dt)
                 table.sort(delete, function(a,b) return a>b end)
                 
                 for j, w in pairs(delete) do
+                    if i == "goomba" or i == "koopa" then
+                        asf.send_msg(pd, "/level/enemy/down")
+                    end
                     table.remove(v, w)
                 end
             end
@@ -3794,6 +3797,7 @@ function spawnenemy(x, y)
         
         if enemy then    
             table.insert(enemiesspawned, {x, y})
+            asf.send_msg(pd, "/level/enemy/spawn")
             
             --spawn enemies in 5x1 line so they spawn as a unit and not alone.
             spawnenemy(x-2, y)
