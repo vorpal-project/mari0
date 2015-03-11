@@ -994,6 +994,12 @@ function mario:update(dt)
 		if lakitoendx and self.x >= lakitoendx then
 			lakitoend = true
 		end
+
+		if self.speedy > 0 or self.speedy < 0 then
+			asf.send_msg(pd, "/level/airborne/count", dt)
+		else
+			asf.send_msg(pd, "/level/airborne/reset")
+		end
 	end
 	
 	--checkpoints
