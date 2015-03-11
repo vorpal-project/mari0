@@ -2610,6 +2610,7 @@ function game_keypressed(key, unicode)
             elseif (key == "return" or key == "enter" or key == "kpenter" or key == " ") then
                 if pausemenuselected2 == 1 then
                     -- love.audio.stop() -- @oldmusic
+                    asf.send_msg(pd, "/level/stop")
                     pausemenuopen = false
                     menuprompt = false
                     menu_load()
@@ -2629,7 +2630,8 @@ function game_keypressed(key, unicode)
                 if pausemenuselected2 == 1 then
                     -- @oldmusic
                     -- love.audio.stop()
-                    -- love.event.quit()
+                    asf.send_msg(pd, "/level/stop")
+                    love.event.quit()
                 else
                     desktopprompt = false
                 end
@@ -2645,6 +2647,7 @@ function game_keypressed(key, unicode)
             elseif (key == "return" or key == "enter" or key == "kpenter" or key == " ") then
                 if pausemenuselected2 == 1 then
                     -- love.audio.stop() -- @oldmusic
+                    asf.send_msg(pd, "/level/stop")
                     suspendgame()
                     suspendprompt = false
                     pausemenuopen = false
@@ -2667,7 +2670,9 @@ function game_keypressed(key, unicode)
         elseif (key == "return" or key == "enter" or key == "kpenter" or key == " ") then
             if pausemenuoptions[pausemenuselected] == "resume" then
                 pausemenuopen = false
-                love.audio.resume()
+                -- @oldmusic
+                --love.audio.resume()
+                asf.send_msg(pd, "/level/start")
             elseif pausemenuoptions[pausemenuselected] == "suspend" then
                 suspendprompt = true
                 pausemenuselected2 = 1
@@ -2680,7 +2685,9 @@ function game_keypressed(key, unicode)
             end
         elseif key == "escape" then
             pausemenuopen = false
-            love.audio.resume()
+            -- @oldmusic
+            --love.audio.resume()
+            asf.send_msg(pd, "/level/start")
         elseif (key == "right" or key == "d") then
             if pausemenuoptions[pausemenuselected] == "volume" then
                 if volume < 1 then
@@ -2749,6 +2756,7 @@ function game_keypressed(key, unicode)
             pausemenuopen = true
             -- @oldmusic
             --love.audio.pause()
+            asf.send_msg(pd, "/level/stop")
             playsound(pausesound)
         end
     end
@@ -3441,7 +3449,8 @@ function moveoutportal(p0) --pushes objects out of the portal i in.
 end
 
 function nextlevel()
-    love.audio.stop()
+    -- @oldmusic
+    --love.audio.stop()
     mariolevel = mariolevel + 1
     if mariolevel > 4 then
         mariolevel = 1

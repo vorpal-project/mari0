@@ -1,5 +1,5 @@
 function menu_load()
-    -- love.audio.stop() -- @oldmusic
+    -- love.audio.stop() -- @oldmusicx'
     editormode = false
     gamestate = "menu"
     selection = 1

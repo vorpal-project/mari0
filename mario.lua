@@ -422,7 +422,8 @@ function mario:update(dt)
 				
 				if mariotime <= 0 then
 					subtractscore = false
-					scoreringsound:stop()
+					-- @oldmusic
+					--scoreringsound:stop()
 					castleflagmove = true
 					mariotime = 0
 				end
@@ -2959,10 +2960,9 @@ function mario:flag()
 		fireworkcount = 0
 	end
 	
-	love.audio.stop()
-	
-	
-	playsound(levelendsound)
+	-- @oldmusic
+	--love.audio.stop()
+	--playsound(levelendsound)
 end
 
 function mario:axe()

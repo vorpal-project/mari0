@@ -1164,6 +1164,7 @@ function suspendgame()
     love.filesystem.write("suspend.txt", s)
     
     -- love.audio.stop() -- @oldmusic
+    asf.send_msg(pd, "/level/stop")
     menu_load()
 end
 
