@@ -1,4 +1,4 @@
-#N canvas 203 107 1442 867 10;
+#N canvas 203 110 1442 867 10;
 #X declare -lib mrpeach;
 #X obj 369 95 loadbang;
 #X obj 130 450 phrase4 \$0-mono-1;
@@ -100,31 +100,31 @@
 #X restore 1003 499 pd part-1a;
 #X obj 974 409 r \$0-part;
 #X msg 944 278 0;
-#N canvas 485 238 436 383 synth 1;
-#X obj -230 164 vsl 10 32 0 1000 0 1 attack attack a 0 -8 0 8 -262144
--1 -1 100 0;
-#X obj -217 164 vsl 10 32 0 1000 0 1 decay decay d 0 -8 0 8 -262144
--1 -1 1550 0;
-#X obj -204 164 vsl 10 32 0 1 0 1 sustain sustain s 0 -8 0 8 -262144
--1 -1 1550 0;
-#X obj -191 164 vsl 10 32 0 1000 0 1 release release r 0 -8 0 8 -262144
+#N canvas 485 241 483 419 synth 0;
+#X obj 312 155 vsl 10 32 0 1000 0 1 attack attack a 0 -8 0 8 -262144
 -1 -1 310 0;
-#X obj -309 154 loadbang;
-#X obj -296 118 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 325 155 vsl 10 32 0 1000 0 1 decay decay d 0 -8 0 8 -262144
+-1 -1 1550 0;
+#X obj 338 155 vsl 10 32 0 1 0 1 sustain sustain s 0 -8 0 8 -262144
+-1 -1 1550 0;
+#X obj 351 155 vsl 10 32 0 1000 0 1 release release r 0 -8 0 8 -262144
+-1 -1 310 0;
+#X obj 233 145 loadbang;
+#X obj 246 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -483 225 +~;
-#X obj -469 163 r \$0-mono-1;
-#X obj -482 101 r \$0-mono-2;
-#X obj -509 37 r \$0-mono-3;
-#X obj -508 258 +~;
-#X obj -509 314 dac~;
-#X obj -509 283 *~;
-#X msg -329 212 0.1;
-#X msg -252 236 \; attack 100 \; decay 500 \; sustain 0.5 \; release
+#X obj 59 216 +~;
+#X obj 73 154 r \$0-mono-1;
+#X obj 60 92 r \$0-mono-2;
+#X obj 33 28 r \$0-mono-3;
+#X obj 34 249 +~;
+#X obj 33 305 dac~;
+#X obj 33 274 *~;
+#X msg 213 203 0.1;
+#X msg 290 227 \; attack 100 \; decay 500 \; sustain 0.5 \; release
 100 \;;
-#X obj -509 71 monophonic 3 osc~;
-#X obj -469 196 monophonic 1 osc~;
-#X obj -482 135 monophonic 2 osc~;
+#X obj 33 62 monophonic 3 osc~;
+#X obj 73 187 monophonic 1 osc~;
+#X obj 60 126 monophonic 2 osc~;
 #X connect 4 0 14 0;
 #X connect 4 0 13 0;
 #X connect 5 0 4 0;
@@ -214,7 +214,7 @@
 #X restore 1117 500 pd part-1b;
 #X msg 396 174 150;
 #X obj 893 440 demux 1 2 3;
-#N canvas 908 224 451 673 osc-listener 1;
+#N canvas 908 230 451 673 osc-listener 1;
 #X msg 36 559 \; pd dsp 1;
 #X obj 36 53 udpreceive 1337;
 #X obj 36 82 unpackOSC;
@@ -229,38 +229,25 @@
 #X obj 37 23 import mrpeach;
 #X obj 36 119 routeOSC /game /level;
 #X obj 36 478 routeOSC /load /quit;
-#X obj 97 154 routeOSC /start /stop /airborne;
-#X obj 219 195 routeOSC /count /reset;
 #X msg 281 271 0;
 #X obj 219 366 s pitchdiff;
-#X obj 308 362 s tempo;
-#X obj 283 227 t b b;
-#X msg 310 300 150;
-#X obj 218 237 t b b;
-#X msg 248 281 75;
-#X msg 206 281 1;
+#X msg 206 281 2;
+#X obj 97 154 routeOSC /start /stop /pickflower /shrink;
 #X connect 1 0 2 0;
 #X connect 2 0 10 0;
 #X connect 3 0 6 0;
 #X connect 6 0 5 0;
 #X connect 7 0 8 0;
 #X connect 10 0 11 0;
-#X connect 10 1 12 0;
+#X connect 10 1 15 0;
 #X connect 11 0 0 0;
 #X connect 11 1 4 0;
-#X connect 12 0 7 0;
-#X connect 12 1 3 0;
-#X connect 12 2 13 0;
-#X connect 13 0 19 0;
-#X connect 13 1 17 0;
-#X connect 14 0 15 0;
-#X connect 17 0 14 0;
-#X connect 17 1 18 0;
-#X connect 18 0 16 0;
-#X connect 19 0 21 0;
-#X connect 19 1 20 0;
-#X connect 20 0 16 0;
-#X connect 21 0 15 0;
+#X connect 12 0 13 0;
+#X connect 14 0 13 0;
+#X connect 15 0 7 0;
+#X connect 15 1 3 0;
+#X connect 15 2 14 0;
+#X connect 15 3 12 0;
 #X coords 0 -1 1 1 110 50 1 80 180;
 #X restore 570 145 pd osc-listener;
 #X obj 944 333 t i i b;

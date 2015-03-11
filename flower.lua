@@ -88,6 +88,7 @@ function flower:rightcollide(a, b)
 		self.active = false
 		self.destroy = true
 		self.drawable = false
+		asf.send_msg(pd, "/level/pickflower")
 	end
 	
 	return false

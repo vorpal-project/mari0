@@ -1674,6 +1674,7 @@ function mario:shrink()
 		self:duck(false)
 	end
 	playsound(shrinksound)
+	asf.send_msg(pd, "/level/shrink")
 	
 	self.size = 1
 	
