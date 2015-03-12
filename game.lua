@@ -53,6 +53,10 @@ function game_load(suspended)
     outputsi = {40, 56, 57, 58, 59, 20, 68, 69, 74, 84}
     
     enemies = { "goomba", "koopa", "hammerbro", "plant", "lakito", "bowser", "cheep", "squid", "flyingfish", "goombahalf", "koopahalf", "cheepwhite", "cheepred", "koopared", "kooparedhalf", "koopa", "kooparedflying", "beetle", "beetlehalf", "spikey", "spikeyhalf"}
+    enemysets = {}
+    for i,v in ipairs(enemies) do
+        enemysets[v] = true
+    end
     
     jumpitems = { "mushroom", "oneup" }
     
@@ -198,7 +202,8 @@ function game_update(dt)
             mariotime = mariotime - 2.5*dt
             
             if mariotime > 0 and mariotime + 2.5*dt >= 99 and mariotime < 99 then
-                love.audio.stop()
+                -- @oldmusic
+                --love.audio.stop()
                 playsound(lowtime)
             end
             
@@ -458,13 +463,25 @@ function game_update(dt)
                 table.sort(delete, function(a,b) return a>b end)
                 
                 for j, w in pairs(delete) do
-                    if i == "goomba" or i == "koopa" then
-                        asf.send_msg(pd, "/level/enemy/down")
-                    end
                     table.remove(v, w)
                 end
             end
         end
+    end
+
+    do -- Count nearby enemies
+        local count = 0
+        for i, v in pairs(objects) do
+            if enemysets[i] then
+                for j, w in ipairs(v) do
+                    local ex, mx = w.x, objects["player"][1].x
+                    if math.abs(ex - mx) < 12 then
+                        count = count + 1
+                    end
+                end
+            end
+        end
+        asf.send_msg(pd, "/level/enemy/count", count)
     end
     
     local oldscroll = splitxscroll[1]
@@ -3797,7 +3814,6 @@ function spawnenemy(x, y)
         
         if enemy then    
             table.insert(enemiesspawned, {x, y})
-            asf.send_msg(pd, "/level/enemy/spawn")
             
             --spawn enemies in 5x1 line so they spawn as a unit and not alone.
             spawnenemy(x-2, y)
