@@ -99,8 +99,8 @@
 #X coords 0 -1 1 1 80 120 1 25 160;
 #X restore 1003 499 pd part-1a;
 #X obj 974 409 r \$0-part;
-#X msg 944 278 0;
-#N canvas 264 314 557 529 synth 1;
+#X msg 966 278 0;
+#N canvas 264 314 557 529 synth 0;
 #X obj 312 155 vsl 10 32 0 1000 0 1 attack attack a 0 -8 0 8 -262144
 -1 -1 310 0;
 #X obj 325 155 vsl 10 32 0 1000 0 1 decay decay d 0 -8 0 8 -262144
@@ -125,7 +125,7 @@
 #X obj 33 62 monophonic 3 osc~;
 #X obj 73 187 monophonic 1 osc~;
 #X obj 60 126 monophonic 2 osc~;
-#N canvas 577 169 635 781 percussion 1;
+#N canvas 577 169 635 781 percussion 0;
 #X obj 202 172 r drum1;
 #X obj 72 41 r \$0-play;
 #N canvas 821 681 497 310 low 0;
@@ -242,12 +242,12 @@
 #X obj 707 550 r phrase-2;
 #X obj 369 130 t b b;
 #X obj 866 226 t a b;
-#X obj 971 369 s \$0-phrase-type;
+#X obj 985 369 s \$0-phrase-type;
 #X obj 573 349 * 4;
 #X obj 573 383 / 3;
 #X obj 495 730 phrase3 \$0-mono-3;
 #X obj 688 699 r phrase-3;
-#N canvas 853 105 462 898 part-1b 0;
+#N canvas 853 108 462 898 part-1b 0;
 #X obj 36 62 inlet start;
 #X obj 36 254 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -302,8 +302,8 @@
 #X coords 0 -1 1 1 80 120 1 25 160;
 #X restore 1117 500 pd part-1b;
 #X msg 396 174 150;
-#X obj 893 440 demux 1 2 3;
-#N canvas 963 233 657 673 osc-listener 1;
+#X obj 893 450 demux 1 2 3;
+#N canvas 963 233 657 673 osc-listener 0;
 #X msg 36 559 \; pd dsp 1;
 #X obj 36 53 udpreceive 1337;
 #X obj 36 82 unpackOSC;
@@ -336,6 +336,7 @@
 #X connect 6 0 5 0;
 #X connect 7 0 13 0;
 #X connect 7 0 17 0;
+#X connect 7 0 10 0;
 #X connect 9 0 18 0;
 #X connect 9 1 14 0;
 #X connect 10 0 11 0;
@@ -355,7 +356,49 @@
 #X connect 23 0 15 0;
 #X coords 0 -1 1 1 110 50 1 80 180;
 #X restore 570 145 pd osc-listener;
-#X obj 944 333 t i i b;
+#X obj 966 333 t i i b;
+#N canvas 716 204 386 788 part-2a 0;
+#X obj 36 62 inlet start;
+#X obj 36 254 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 49 233 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 62 212 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 75 191 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 36 141 cycle 4;
+#X msg 36 98 foo;
+#X obj 75 305 t b b;
+#X obj 102 364 s \$0-part;
+#X msg 102 333 2;
+#X obj 168 62 inlet reset;
+#X msg 168 97 set 0;
+#X msg 75 395 \; phrase-1 0 0 80 70 80 69 0 0 \; phrase-2 0 0 80 61
+80 60 0 0 \; phrase-3 0 0 80 54 80 53 0 0;
+#X msg 62 469 \; phrase-1 0 0 80 69 0 0 80 71 \; phrase-2 0 0 80 60
+0 0 80 62 \; phrase-3 0 0 80 53 0 0 80 55;
+#X msg 49 542 \; phrase-1 0 0 0 0 80 64 0 0 \; phrase-2 0 0 0 0 80
+55 0 0 \; phrase-3 0 0 0 0 80 48 0 0;
+#X msg 36 614 \; phrase-1 80 72 0 0 0 0 80 67 \; phrase-2 80 64 0 0
+0 0 80 60 \; phrase-3 80 55 0 0 0 0 80 52;
+#X connect 0 0 6 0;
+#X connect 1 0 15 0;
+#X connect 2 0 14 0;
+#X connect 3 0 13 0;
+#X connect 4 0 7 0;
+#X connect 5 0 1 0;
+#X connect 5 1 2 0;
+#X connect 5 2 3 0;
+#X connect 5 3 4 0;
+#X connect 6 0 5 0;
+#X connect 7 0 12 0;
+#X connect 7 1 9 0;
+#X connect 9 0 8 0;
+#X connect 10 0 11 0;
+#X connect 11 0 5 0;
+#X coords 0 -1 1 1 80 120 1 25 160;
+#X restore 1227 499 pd part-2a;
 #X connect 0 0 30 0;
 #X connect 4 0 1 2;
 #X connect 5 0 2 2;
