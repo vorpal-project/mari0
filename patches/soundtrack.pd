@@ -1,4 +1,4 @@
-#N canvas 204 118 1442 867 10;
+#N canvas 204 130 1442 867 10;
 #X declare -lib mrpeach;
 #X obj 369 95 loadbang;
 #X obj 130 450 phrase4 \$0-mono-1;
@@ -12,7 +12,7 @@
 #X obj 91 271 r \$0-play;
 #X obj 91 423 t b b b;
 #X obj 866 194 r \$0-metro;
-#N canvas 939 199 380 683 intro 0;
+#N canvas 939 202 380 683 intro 0;
 #X obj 36 62 inlet start;
 #X obj 36 254 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -54,7 +54,7 @@
 #X connect 11 0 5 0;
 #X coords 0 -1 1 1 80 120 1 25 160;
 #X restore 893 502 pd intro;
-#X obj 866 655 s \$0-play;
+#X obj 866 835 s \$0-play;
 #X obj 866 397 t b b;
 #N canvas 716 204 386 788 part-1a 0;
 #X obj 36 62 inlet start;
@@ -247,7 +247,7 @@
 #X obj 573 383 / 3;
 #X obj 495 730 phrase3 \$0-mono-3;
 #X obj 688 699 r phrase-3;
-#N canvas 853 108 462 898 part-1b 0;
+#N canvas 1035 110 462 898 part-1b 0;
 #X obj 36 62 inlet start;
 #X obj 36 254 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -269,7 +269,6 @@
 50 71 \; phrase-3 50 52 50 60 50 64;
 #X obj 75 292 t b b;
 #X obj 102 351 s \$0-part;
-#X msg 102 320 1;
 #X obj 188 62 inlet reset;
 #X msg 188 97 set 0;
 #X msg 75 375 \; phrase-1 80 74 80 71 0 0 0 0 \; phrase-2 80 65 80
@@ -278,32 +277,32 @@
 0 0 80 64 \; phrase-3 0 0 80 60 0 0 80 57;
 #X msg 49 594 \; phrase-1 80 81 0 0 80 77 80 79 \; phrase-2 80 72 0
 0 80 69 80 71 \; phrase-3 80 65 0 0 80 62 80 64;
+#X msg 102 320 3;
 #X connect 0 0 6 0;
 #X connect 1 0 9 0;
 #X connect 2 0 7 0;
-#X connect 3 0 20 0;
+#X connect 3 0 19 0;
 #X connect 4 0 14 0;
 #X connect 5 0 1 0;
 #X connect 5 1 2 0;
 #X connect 5 2 3 0;
 #X connect 5 3 4 0;
 #X connect 6 0 5 0;
-#X connect 7 0 21 0;
+#X connect 7 0 20 0;
 #X connect 7 1 12 0;
 #X connect 9 0 13 0;
 #X connect 9 1 10 0;
 #X connect 10 0 11 0;
 #X connect 12 0 8 0;
-#X connect 14 0 19 0;
-#X connect 14 1 16 0;
-#X connect 16 0 15 0;
-#X connect 17 0 18 0;
-#X connect 18 0 5 0;
+#X connect 14 0 18 0;
+#X connect 14 1 21 0;
+#X connect 16 0 17 0;
+#X connect 17 0 5 0;
+#X connect 21 0 15 0;
 #X coords 0 -1 1 1 80 120 1 25 160;
 #X restore 1117 500 pd part-1b;
 #X msg 396 174 150;
-#X obj 893 450 demux 1 2 3;
-#N canvas 963 233 657 673 osc-listener 0;
+#N canvas 963 236 657 673 osc-listener 0;
 #X msg 36 559 \; pd dsp 1;
 #X obj 36 53 udpreceive 1337;
 #X obj 36 82 unpackOSC;
@@ -356,8 +355,58 @@
 #X connect 23 0 15 0;
 #X coords 0 -1 1 1 110 50 1 80 180;
 #X restore 570 145 pd osc-listener;
-#X obj 966 333 t i i b;
-#N canvas 716 204 386 788 part-2a 0;
+#N canvas 773 188 386 788 part-2a 0;
+#X obj 36 62 inlet start;
+#X obj 36 254 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 49 233 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 62 212 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 75 191 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 36 141 cycle 4;
+#X msg 36 98 foo;
+#X obj 94 446 s \$0-part;
+#X obj 168 62 inlet reset;
+#X msg 168 97 set 0;
+#X msg 36 694 \; phrase-1 0 0 0 0 80 79 80 78 \; phrase-2 0 0 0 0 80
+76 80 75 \; phrase-3 80 48 0 0 0 0 80 55;
+#X msg 49 622 \; phrase-1 80 77 80 75 0 0 80 76 \; phrase-2 80 74 80
+71 0 0 80 72 \; phrase-3 0 0 0 0 80 60 0 0;
+#X msg 62 549 \; phrase-1 0 0 80 68 80 69 80 72 \; phrase-2 0 0 80
+64 80 65 80 67 \; phrase-3 80 53 0 0 0 0 80 60;
+#X msg 75 475 \; phrase-1 0 0 80 69 80 72 80 74 \; phrase-2 0 0 80
+60 80 64 80 65 \; phrase-3 80 60 0 0 80 53 0 0;
+#X msg 94 335 4;
+#X obj 114 378 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 94 415 +;
+#X obj 75 305 t b b b;
+#X msg 199 193 1;
+#X connect 0 0 6 0;
+#X connect 1 0 10 0;
+#X connect 2 0 11 0;
+#X connect 3 0 12 0;
+#X connect 4 0 17 0;
+#X connect 5 0 1 0;
+#X connect 5 1 2 0;
+#X connect 5 2 3 0;
+#X connect 5 3 4 0;
+#X connect 6 0 5 0;
+#X connect 8 0 9 0;
+#X connect 8 0 18 0;
+#X connect 9 0 5 0;
+#X connect 14 0 16 0;
+#X connect 15 0 16 1;
+#X connect 16 0 7 0;
+#X connect 17 0 13 0;
+#X connect 17 1 14 0;
+#X connect 17 2 15 0;
+#X connect 18 0 15 0;
+#X coords 0 -1 1 1 80 120 1 25 160;
+#X restore 894 644 pd part-2a;
+#N canvas 1194 183 386 788 part-2b 0;
 #X obj 36 62 inlet start;
 #X obj 36 254 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -371,20 +420,20 @@
 #X msg 36 98 foo;
 #X obj 75 305 t b b;
 #X obj 102 364 s \$0-part;
-#X msg 102 333 2;
 #X obj 168 62 inlet reset;
 #X msg 168 97 set 0;
-#X msg 75 395 \; phrase-1 0 0 80 70 80 69 0 0 \; phrase-2 0 0 80 61
-80 60 0 0 \; phrase-3 0 0 80 54 80 53 0 0;
-#X msg 62 469 \; phrase-1 0 0 80 69 0 0 80 71 \; phrase-2 0 0 80 60
-0 0 80 62 \; phrase-3 0 0 80 53 0 0 80 55;
-#X msg 49 542 \; phrase-1 0 0 0 0 80 64 0 0 \; phrase-2 0 0 0 0 80
-55 0 0 \; phrase-3 0 0 0 0 80 48 0 0;
-#X msg 36 614 \; phrase-1 80 72 0 0 0 0 80 67 \; phrase-2 80 64 0 0
-0 0 80 60 \; phrase-3 80 55 0 0 0 0 80 52;
+#X msg 36 614 \; phrase-1 0 0 0 0 80 79 80 78 \; phrase-2 0 0 0 0 80
+76 80 75 \; phrase-3 80 48 0 0 0 0 80 52;
+#X msg 49 542 \; phrase-1 80 77 80 75 0 0 80 76 \; phrase-2 80 74 80
+71 0 0 80 72 \; phrase-3 0 0 0 0 80 55 80 60;
+#X msg 62 469 \; phrase-1 0 0 80 84 0 0 80 84 \; phrase-2 0 0 80 79
+0 0 80 79 \; phrase-3 0 0 80 77 0 0 80 77;
+#X msg 75 395 \; phrase-1 80 84 0 0 0 0 0 0 \; phrase-2 80 79 0 0 0
+0 0 0 \; phrase-3 80 77 0 0 80 55 0 0;
+#X msg 102 333 3;
 #X connect 0 0 6 0;
-#X connect 1 0 15 0;
-#X connect 2 0 14 0;
+#X connect 1 0 11 0;
+#X connect 2 0 12 0;
 #X connect 3 0 13 0;
 #X connect 4 0 7 0;
 #X connect 5 0 1 0;
@@ -392,13 +441,58 @@
 #X connect 5 2 3 0;
 #X connect 5 3 4 0;
 #X connect 6 0 5 0;
-#X connect 7 0 12 0;
-#X connect 7 1 9 0;
-#X connect 9 0 8 0;
-#X connect 10 0 11 0;
-#X connect 11 0 5 0;
+#X connect 7 0 14 0;
+#X connect 7 1 15 0;
+#X connect 9 0 10 0;
+#X connect 10 0 5 0;
+#X connect 15 0 8 0;
 #X coords 0 -1 1 1 80 120 1 25 160;
-#X restore 1227 499 pd part-2a;
+#X restore 1004 644 pd part-2b;
+#X msg 922 379 3;
+#N canvas 1194 186 386 788 part-2c 0;
+#X obj 36 62 inlet start;
+#X obj 36 254 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 49 233 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 62 212 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 75 191 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 36 141 cycle 4;
+#X msg 36 98 foo;
+#X obj 75 305 t b b;
+#X obj 102 364 s \$0-part;
+#X obj 168 62 inlet reset;
+#X msg 168 97 set 0;
+#X msg 102 333 3;
+#X msg 36 614 \; phrase-1 0 0 0 0 80 75 0 0 \; phrase-2 0 0 0 0 80
+68 0 0 \; phrase-3 80 48 0 0 80 56 0 0;
+#X msg 49 542 \; phrase-1 0 0 80 74 0 0 0 0 \; phrase-2 0 0 80 65 0
+0 0 0 \; phrase-3 0 0 80 57 0 0 0 0;
+#X msg 62 469 \; phrase-1 80 72 0 0 0 0 0 0 \; phrase-2 80 64 0 0 0
+0 0 0 \; phrase-3 80 60 0 0 0 0 80 55;
+#X msg 75 395 \; phrase-1 0 0 0 0 0 0 0 0 \; phrase-2 0 0 0 0 0 0 0
+0 \; phrase-3 80 55 0 0 80 48 0 0;
+#X connect 0 0 6 0;
+#X connect 1 0 12 0;
+#X connect 2 0 13 0;
+#X connect 3 0 14 0;
+#X connect 4 0 7 0;
+#X connect 5 0 1 0;
+#X connect 5 1 2 0;
+#X connect 5 2 3 0;
+#X connect 5 3 4 0;
+#X connect 6 0 5 0;
+#X connect 7 0 15 0;
+#X connect 7 1 11 0;
+#X connect 9 0 10 0;
+#X connect 10 0 5 0;
+#X connect 11 0 8 0;
+#X coords 0 -1 1 1 80 120 1 25 160;
+#X restore 1116 644 pd part-2c;
+#X obj 893 450 demux 1 2 3 4 5 6;
+#X obj 966 333 t f f b;
 #X connect 0 0 30 0;
 #X connect 4 0 1 2;
 #X connect 5 0 2 2;
@@ -411,9 +505,9 @@
 #X connect 10 2 1 0;
 #X connect 11 0 31 0;
 #X connect 14 0 13 0;
-#X connect 14 1 39 0;
-#X connect 16 0 39 1;
-#X connect 17 0 41 0;
+#X connect 14 1 44 0;
+#X connect 16 0 44 1;
+#X connect 17 0 45 0;
 #X connect 19 0 8 0;
 #X connect 21 0 1 1;
 #X connect 21 0 2 1;
@@ -436,11 +530,18 @@
 #X connect 34 0 35 1;
 #X connect 36 0 35 2;
 #X connect 38 0 20 0;
-#X connect 39 0 12 0;
-#X connect 39 1 15 0;
-#X connect 39 2 37 0;
-#X connect 41 0 39 1;
-#X connect 41 0 12 1;
-#X connect 41 1 32 0;
-#X connect 41 1 15 1;
-#X connect 41 2 37 1;
+#X connect 42 0 44 1;
+#X connect 44 0 12 0;
+#X connect 44 1 15 0;
+#X connect 44 2 37 0;
+#X connect 44 3 40 0;
+#X connect 44 4 41 0;
+#X connect 44 5 43 0;
+#X connect 45 0 44 1;
+#X connect 45 1 32 0;
+#X connect 45 2 37 1;
+#X connect 45 2 15 1;
+#X connect 45 2 12 1;
+#X connect 45 2 43 1;
+#X connect 45 2 41 1;
+#X connect 45 2 40 1;
