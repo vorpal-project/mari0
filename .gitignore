@@ -2,3 +2,5 @@
 .*.swp
 *.sublime-workspace
 *.zip
+/build
+/mari0.sh

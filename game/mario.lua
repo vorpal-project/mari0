@@ -996,9 +996,9 @@ function mario:update(dt)
 		end
 
 		if self.speedy > 0 or self.speedy < 0 then
-			asf.send_msg(pd, "/level/airborne/count", dt)
+			--asf.send_msg(pd, "/level/airborne/count", dt)
 		else
-			asf.send_msg(pd, "/level/airborne/reset")
+			--asf.send_msg(pd, "/level/airborne/reset")
 		end
 	end
 	
@@ -1674,7 +1674,7 @@ function mario:shrink()
 		self:duck(false)
 	end
 	playsound(shrinksound)
-	asf.send_msg(pd, "/level/shrink")
+	--asf.send_msg(pd, "/level/shrink")
 	
 	self.size = 1
 	

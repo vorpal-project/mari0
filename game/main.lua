@@ -141,9 +141,8 @@ function love.load(...)
     require "notgate"
     --require "musicloader" -- @oldmusic
     do
-        local path = (...)[2]
-        package.cpath = package.cpath .. ";" .. path .. "/lib/?.so"
-        asf = require "libasf"
+        require "defs"
+        oda = require "oda"
     end
     
     http = require("socket.http")
@@ -740,8 +739,8 @@ function love.load(...)
     
     -- musici = 2 -- @oldmusic
 
-    pd = asf.address_new("localhost", "1337")
-    asf.send_msg(pd, "/game/load")
+    --pd = asf.address_new("localhost", "1337")
+    --asf.send_msg(pd, "/game/load")
     
     shaders:init()
     shaders:set(1, shaderlist[currentshaderi1])
@@ -1164,7 +1163,7 @@ function suspendgame()
     love.filesystem.write("suspend.txt", s)
     
     -- love.audio.stop() -- @oldmusic
-    asf.send_msg(pd, "/level/stop")
+    --asf.send_msg(pd, "/level/stop")
     menu_load()
 end
 
@@ -1331,7 +1330,7 @@ function love.joystickreleased(joystick, button)
 end
 
 function love.quit ()
-    asf.send_msg(pd, "/game/quit")
+    --asf.send_msg(pd, "/game/quit")
 end
 
 function round(num, idp) --Not by me
