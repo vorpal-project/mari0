@@ -143,6 +143,9 @@ function love.load(...)
     do
         require "defs"
         oda = require "oda"
+        oda.start()
+        oda.registerPath(MARI0_PATCHES_PATH)
+        oda.registerPath(ODA_PATCHES_PATH)
     end
     
     http = require("socket.http")
@@ -739,8 +742,8 @@ function love.load(...)
     
     -- musici = 2 -- @oldmusic
 
-    --pd = asf.address_new("localhost", "1337")
-    --asf.send_msg(pd, "/game/load")
+    bgm_event = oda.eventInstance "bgm"
+    bgm_event:pushCommand "start"
     
     shaders:init()
     shaders:set(1, shaderlist[currentshaderi1])
@@ -754,6 +757,7 @@ function love.load(...)
 end
 
 function love.update(dt)
+    oda.tick()
     -- if music then
     --     music:update() -- @oldmusic
     -- end
@@ -1330,7 +1334,8 @@ function love.joystickreleased(joystick, button)
 end
 
 function love.quit ()
-    --asf.send_msg(pd, "/game/quit")
+    bgm_event = nil
+    oda.finish()
 end
 
 function round(num, idp) --Not by me

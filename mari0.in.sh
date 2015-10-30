@@ -1,4 +1,5 @@
 #!/bin/bash
 
-love @CMAKE_SOURCE_DIR@/game
+cd @CMAKE_SOURCE_DIR@/game
+love .
 

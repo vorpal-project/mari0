@@ -1,0 +1,12 @@
+#N canvas 206 492 494 409 16;
+#X obj 54 74 r \$0-command;
+#X obj 54 165 oda_sound sounds/overworld-remix.ogg 12000;
+#X obj 53 255 oda_panel \$0;
+#X msg 77 114 start;
+#X msg 154 112 stop;
+#X obj 250 112 print bgm;
+#X connect 0 0 1 0;
+#X connect 0 0 5 0;
+#X connect 1 0 2 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
