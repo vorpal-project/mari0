@@ -469,6 +469,11 @@ function game_update(dt)
         end
     end
 
+    do -- report level progress
+      local player_x = objects["player"][1].x
+      bgm_event:pushCommand("progress", player_x/mapwidth)
+    end
+
     do -- Count nearby enemies
         local count = 0
         for i, v in pairs(objects) do
