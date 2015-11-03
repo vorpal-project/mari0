@@ -743,7 +743,7 @@ function love.load(...)
     -- musici = 2 -- @oldmusic
 
     bgm_event = oda.eventInstance "bgm"
-    bgm_event:pushCommand "start"
+    --bgm_event:pushCommand "start"
     
     shaders:init()
     shaders:set(1, shaderlist[currentshaderi1])
@@ -1167,7 +1167,7 @@ function suspendgame()
     love.filesystem.write("suspend.txt", s)
     
     -- love.audio.stop() -- @oldmusic
-    --asf.send_msg(pd, "/level/stop")
+    bgm_event:pushCommand "stop"
     menu_load()
 end
 

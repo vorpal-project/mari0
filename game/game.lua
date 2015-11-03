@@ -2235,7 +2235,7 @@ function startlevel(level)
     end
     
     --PLAY BGM
-    --asf.send_msg(pd, "/level/start")
+    bgm_event:pushCommand "start"
     -- @oldmusic
     -- if intermission == false then
     --     playmusic()
@@ -2630,7 +2630,7 @@ function game_keypressed(key, unicode)
             elseif (key == "return" or key == "enter" or key == "kpenter" or key == " ") then
                 if pausemenuselected2 == 1 then
                     -- love.audio.stop() -- @oldmusic
-                    --asf.send_msg(pd, "/level/stop")
+                    bgm_event:pushCommand "stop"
                     pausemenuopen = false
                     menuprompt = false
                     menu_load()
@@ -2650,7 +2650,7 @@ function game_keypressed(key, unicode)
                 if pausemenuselected2 == 1 then
                     -- @oldmusic
                     -- love.audio.stop()
-                    --asf.send_msg(pd, "/level/stop")
+                    bgm_event:pushCommand "stop"
                     love.event.quit()
                 else
                     desktopprompt = false
@@ -2667,7 +2667,7 @@ function game_keypressed(key, unicode)
             elseif (key == "return" or key == "enter" or key == "kpenter" or key == " ") then
                 if pausemenuselected2 == 1 then
                     -- love.audio.stop() -- @oldmusic
-                    --asf.send_msg(pd, "/level/stop")
+                    bgm_event:pushCommand "stop"
                     suspendgame()
                     suspendprompt = false
                     pausemenuopen = false
@@ -2692,7 +2692,7 @@ function game_keypressed(key, unicode)
                 pausemenuopen = false
                 -- @oldmusic
                 --love.audio.resume()
-                --asf.send_msg(pd, "/level/start")
+                bgm_event:pushCommand "start"
             elseif pausemenuoptions[pausemenuselected] == "suspend" then
                 suspendprompt = true
                 pausemenuselected2 = 1
@@ -2707,7 +2707,7 @@ function game_keypressed(key, unicode)
             pausemenuopen = false
             -- @oldmusic
             --love.audio.resume()
-            --asf.send_msg(pd, "/level/start")
+            bgm_event:pushCommand "start"
         elseif (key == "right" or key == "d") then
             if pausemenuoptions[pausemenuselected] == "volume" then
                 if volume < 1 then
@@ -2776,7 +2776,7 @@ function game_keypressed(key, unicode)
             pausemenuopen = true
             -- @oldmusic
             --love.audio.pause()
-            --asf.send_msg(pd, "/level/stop")
+            bgm_event:pushCommand "stop"
             playsound(pausesound)
         end
     end
