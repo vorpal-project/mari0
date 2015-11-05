@@ -486,7 +486,7 @@ function game_update(dt)
                 end
             end
         end
-        --asf.send_msg(pd, "/level/enemy/count", count)
+        bgm_event:pushCommand("enemy_count", count)
     end
     
     local oldscroll = splitxscroll[1]

@@ -1663,6 +1663,8 @@ function mario:grow()
 		self.animationtimer = 0
 		noupdate = true
 	end
+
+  bgm_event:pushCommand("mario_size", self.size)
 end
 
 function mario:shrink()
@@ -1674,7 +1676,6 @@ function mario:shrink()
 		self:duck(false)
 	end
 	playsound(shrinksound)
-	--asf.send_msg(pd, "/level/shrink")
 	
 	self.size = 1
 	
@@ -1689,6 +1690,8 @@ function mario:shrink()
 	self.height = 12/16
 	
 	noupdate = true
+
+  bgm_event:pushCommand("mario_size", self.size)
 end
 
 function mario:floorcollide(a, b)
