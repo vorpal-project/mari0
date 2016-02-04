@@ -44,7 +44,7 @@ function love.load(...)
     --version check by checking for a const that was added in 0.8.0
     if love._version_major == nil then error("You have an outdated version of Love! Get 0.8.0 or higher and retry.") end
     
-    iconimg = love.image.newImageData("graphics/icon.gif")
+    iconimg = love.image.newImageData("graphics/icon.png")
     love.window.setIcon(iconimg)
     
     love.graphics.setDefaultFilter("nearest", "nearest")
@@ -143,9 +143,7 @@ function love.load(...)
     do
         require "defs"
         oda = require "oda"
-        oda.start()
-        oda.registerPath(MARI0_PATCHES_PATH)
-        oda.registerPath(ODA_PATCHES_PATH)
+        oda.start { ODA_PATCHES_PATH, MARI0_PATCHES_PATH }
     end
     
     http = require("socket.http")
@@ -1066,7 +1064,7 @@ function defaultconfig()
     controls[i]["down"] = {"s"}
     controls[i]["up"] = {"w"}
     controls[i]["run"] = {"lshift"}
-    controls[i]["jump"] = {" "}
+    controls[i]["jump"] = {"space"}
     controls[i]["aimx"] = {""} --mouse aiming, so no need
     controls[i]["aimy"] = {""}
     controls[i]["portal1"] = {""}
@@ -1217,7 +1215,7 @@ function changescale(s, fullscreen)
     
     uispace = math.floor(width*16*scale/4)
     --27x14 blocks (15 blocks actual height)
-    love.window.setMode(width*16*scale, 224*scale, { fullscreen = fullscreen, vsync = vsync, fsaa = fsaa })
+    love.window.setMode(width*16*scale, 224*scale, { fullscreen = fullscreen, vsync = vsync, msaa = fsaa })
     
     gamewidth = love.graphics.getWidth()
     gameheight = love.graphics.getHeight()

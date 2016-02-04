@@ -351,10 +351,10 @@ function game_update(dt)
                 gelcannontimer = 0
             end
         else
-            if love.mouse.isDown("l") then
+            if love.mouse.isDown(1) then
                 gelcannontimer = gelcannondelay
                 objects["player"][mouseowner]:shootgel(1)
-            elseif love.mouse.isDown("r") then
+            elseif love.mouse.isDown(2) then
                 gelcannontimer = gelcannondelay
                 objects["player"][mouseowner]:shootgel(2)
             end
@@ -1720,12 +1720,12 @@ function game_draw()
                         breakingblockX = cox
                         breakingblockY = coy
                         breakingblockprogress = 0
-                    elseif not breakingblockX and love.mouse.isDown("l") then
+                    elseif not breakingblockX and love.mouse.isDown(1) then
                         breakingblockX = cox
                         breakingblockY = coy
                         breakingblockprogress = 0
                     end
-                elseif love.mouse.isDown("l") then
+                elseif love.mouse.isDown(1) then
                     breakingblockX = cox
                     breakingblockY = coy
                     breakingblockprogress = 0
@@ -2632,7 +2632,7 @@ function game_keypressed(key, unicode)
                 pausemenuselected2 = 1
             elseif (key == "right" or key == "d") then
                 pausemenuselected2 = 2
-            elseif (key == "return" or key == "enter" or key == "kpenter" or key == " ") then
+            elseif (key == "return" or key == "enter" or key == "kpenter" or key == "space") then
                 if pausemenuselected2 == 1 then
                     -- love.audio.stop() -- @oldmusic
                     bgm_event:pushCommand "stop"
@@ -2651,7 +2651,7 @@ function game_keypressed(key, unicode)
                 pausemenuselected2 = 1
             elseif (key == "right" or key == "d") then
                 pausemenuselected2 = 2
-            elseif (key == "return" or key == "enter" or key == "kpenter" or key == " ") then
+            elseif (key == "return" or key == "enter" or key == "kpenter" or key == "space") then
                 if pausemenuselected2 == 1 then
                     -- @oldmusic
                     -- love.audio.stop()
@@ -2669,7 +2669,7 @@ function game_keypressed(key, unicode)
                 pausemenuselected2 = 1
             elseif (key == "right" or key == "d") then
                 pausemenuselected2 = 2
-            elseif (key == "return" or key == "enter" or key == "kpenter" or key == " ") then
+            elseif (key == "return" or key == "enter" or key == "kpenter" or key == "space") then
                 if pausemenuselected2 == 1 then
                     -- love.audio.stop() -- @oldmusic
                     bgm_event:pushCommand "stop"
@@ -2692,7 +2692,7 @@ function game_keypressed(key, unicode)
             if pausemenuselected > 1 then
                 pausemenuselected = pausemenuselected - 1
             end
-        elseif (key == "return" or key == "enter" or key == "kpenter" or key == " ") then
+        elseif (key == "return" or key == "enter" or key == "kpenter" or key == "space") then
             if pausemenuoptions[pausemenuselected] == "resume" then
                 pausemenuopen = false
                 -- @oldmusic
@@ -2954,7 +2954,7 @@ function game_mousepressed(x, y, button)
         
         if not noupdate and objects["player"][mouseowner] and objects["player"][mouseowner].controlsenabled and objects["player"][mouseowner].vine == false then
         
-            if button == "l" or button == "r" and objects["player"][mouseowner] then
+            if button == 1 or button == 2 and objects["player"][mouseowner] then
                 --knockback
                 if portalknockback then
                     local xadd = math.sin(objects["player"][mouseowner].pointingangle)*30
@@ -2967,7 +2967,7 @@ function game_mousepressed(x, y, button)
                 end
             end
         
-            if button == "l" then
+            if button == 1 then
                 if playertype == "portal" then
                     local sourcex = objects["player"][mouseowner].x+6/16
                     local sourcey = objects["player"][mouseowner].y+6/16
@@ -2989,7 +2989,7 @@ function game_mousepressed(x, y, button)
                     end
                 end
                 
-            elseif button == "r" then
+            elseif button == 2 then
                 if playertype == "portal" then
                     local sourcex = objects["player"][mouseowner].x+6/16
                     local sourcey = objects["player"][mouseowner].y+6/16
@@ -3500,7 +3500,7 @@ function warpzone(i)
 end
 
 function game_mousereleased(x, y, button)
-    if button == "l" then
+    if button == 1 then
         if playertype == "minecraft" then
             breakingblockX = false
         end

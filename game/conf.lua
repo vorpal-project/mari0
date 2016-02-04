@@ -4,6 +4,6 @@ function love.conf(t)
 	t.console = false
 	--t.screen = false
 	t.modules.physics = false
-    t.modules.audio = false
-	t.version = "0.9.2"
+  t.modules.audio = false
+	t.version = "0.10.0"
 end
